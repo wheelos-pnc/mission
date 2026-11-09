@@ -1,3 +1,4 @@
+load("@core//runtime:runtime.bzl", "runtime_module")
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library", "cc_test")
 load("@rules_pkg//pkg:install.bzl", "pkg_install")
 load("@rules_pkg//pkg:mappings.bzl", "pkg_attributes", "pkg_filegroup", "pkg_files", "strip_prefix")
@@ -98,4 +99,18 @@ pkg_install(
     name = "install_dir",
     srcs = [":package_files"],
     tags = ["manual"],
+)
+
+runtime_module(
+    name = "module",
+    components = [":libmission_component.so"],
+    files = {
+        "conf/bt_trees/loop.xml": "conf/mission/bt_trees/loop.xml",
+        "conf/bt_trees/patrol_then_pull_over.xml": "conf/mission/bt_trees/patrol_then_pull_over.xml",
+        "conf/bt_trees/shuttle_bus.xml": "conf/mission/bt_trees/shuttle_bus.xml",
+        "runtime/mission.dag": "dag/mission/mission.dag",
+        "runtime/mission.launch": "launch/mission/mission.launch",
+        "runtime/mission_config.pb.txt": "conf/mission/mission_config.pb.txt",
+    },
+    module_name = "mission",
 )

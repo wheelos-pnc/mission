@@ -1,0 +1,7 @@
+<cyber>
+  <module>
+    <name>mission</name>
+    <dag_conf>dag/mission/mission.dag</dag_conf>
+    <process_name>mission</process_name>
+  </module>
+</cyber>
